@@ -23,10 +23,7 @@ export const AuthProvider = ({children}) => {
         },
         googleLogin: async () => {
           try {
-            GoogleSignin.configure({
-              webClientId: '418906309485-jv9r66slivispvl3kl7l8uo0rrgil869.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-              offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-            });
+            
             const { idToken } = await GoogleSignin.signIn();
 
             // Create a Google credential with the token
@@ -46,10 +43,7 @@ export const AuthProvider = ({children}) => {
           
 
           try {
-            GoogleSignin.configure({
-              webClientId: '418906309485-jv9r66slivispvl3kl7l8uo0rrgil869.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
-              offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
-            });
+           
             // Get the users ID token
             const { idToken } = await GoogleSignin.signIn();
 
@@ -61,9 +55,7 @@ export const AuthProvider = ({children}) => {
             // Use it only when user Sign's up, 
             // so create different social signup function
             .then(() => {
-              //Once the user creation has happened successfully, we can add the currentUser into firestore
-              //with the appropriate details.
-              // console.log('current User', auth().currentUser);
+              
               firestore().collection('users').doc(auth().currentUser.uid)
               .set({
                   fname: '',

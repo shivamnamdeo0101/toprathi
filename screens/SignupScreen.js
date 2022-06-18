@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
     color: '#fff',
-    fontWeight:'bold',
-    textAlign:'center'
+    textAlign:'center',
+    fontFamily:'Poppins-Medium',
   },
   middleText: {
     fontFamily: 'Kufam-SemiBoldItalic',

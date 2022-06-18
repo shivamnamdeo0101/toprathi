@@ -1,11 +1,21 @@
-import { View, Text,StatusBar,ScrollView ,ImageBackground,StyleSheet} from 'react-native'
-import React from 'react'
+import { View, Text,StatusBar,ScrollView ,Modal,ImageBackground,StyleSheet} from 'react-native'
+import React,{useContext,useEffect,useState} from 'react'
 import {Container,Header,HeadText,ProfileIcon,Ctitle,ProfileText,Timestamp,Tag,Row,Button,Grid,GridComp,HelloWrap,ProfileName,FilterScroll,FilterText} from "../styles/HomeStyles";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
+import {AuthContext} from '../navigation/AuthProvider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import CollectDataScreen from './CollectDataScreen';
+import { CollectModal } from '../styles/CollectDataStyles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function HomeScreen() {
 
+const HomeScreen = ({navigation}) =>{
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+
+  const {logout} = useContext(AuthContext);
   const data_list=[
     {
       key:"1",
@@ -53,9 +63,22 @@ export default function HomeScreen() {
 
   ]
 
+  const set_false = ()=>{
+    AsyncStorage.setItem(
+      'isMetaData',
+      'false'
+    )
+
+    alert("Done");
+  }
+
   return (
     <Container>
-       <ScrollView>
+
+     
+
+
+      <ScrollView>
       <StatusBar
         animated={true}
         barStyle="dark-content"
@@ -68,15 +91,17 @@ export default function HomeScreen() {
           </Button>
          <HeadText>FEED</HeadText>
         <Row>
-            <Button>
+            <Button  onPress={()=>setModalVisible(!isModalVisible)}>
               <MaterialIcons name="search" color="#000" size={25} />
             </Button>
             
-           
+
+              <Button  onPress={()=>navigation.navigate("Profile")}>
               <ProfileIcon
                 source={require('../assets/google.png')}
-              
+               
               />
+              </Button>
             
             
         </Row>
@@ -157,3 +182,5 @@ const styles = StyleSheet.create({
       
   }
 })
+
+export default HomeScreen;

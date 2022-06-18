@@ -1,91 +1,73 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text ,StyleSheet,ImageBackground,StatusBar} from 'react-native'
+import React from 'react'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import Onboarding from 'react-native-onboarding-swiper';
+export default function OnboardingScreen({navigation}) {
+  return (
+    <View style={styles.container}>
+        <StatusBar
+        animated={true}
+        backgroundColor="#1A73E8"
+      />
+      <ImageBackground source={require("../assets/onboard.png")} resizeMode="cover" style={styles.image}>
 
-const Dots = ({selected}) => {
-    let backgroundColor;
+          <View style={{backgroundColor:"#4003",borderTopLeftRadius:16,borderTopRightRadius:16}}>
 
-    backgroundColor = selected ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.3)';
+      
+                  <View style={{padding:16}}>
+                    <Text style={{fontFamily:"Poppins-Regular",fontSize:35,color:"#fff",fontWeight:"bold"}}>Find Your Right Career Path On Top Rathi</Text>
+                    <Text style={{fontFamily:"Poppins-Regular",fontSize:15,color:"#fff",fontWeight:"400"}}>India's largest career guidance platform</Text>
 
-    return (
-        <View 
-            style={{
-                width:6,
-                height: 6,
-                marginHorizontal: 3,
-                backgroundColor
-            }}
-        />
-    );
+
+                  </View>
+                    <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Login')}>
+                    <Text style={{color:"#fff",fontWeight:"bold",textAlign:"center",}}>Get Started</Text>
+                </TouchableOpacity>
+          </View>
+      </ImageBackground>
+  </View>
+  )
 }
 
-const Skip = ({...props}) => (
-    <TouchableOpacity
-        style={{marginHorizontal:10}}
-        {...props}
-    >
-        <Text style={{fontSize:16}}>Skip</Text>
-    </TouchableOpacity>
-);
 
-const Next = ({...props}) => (
-    <TouchableOpacity
-        style={{marginHorizontal:10}}
-        {...props}
-    >
-        <Text style={{fontSize:16}}>Next</Text>
-    </TouchableOpacity>
-);
-
-const Done = ({...props}) => (
-    <TouchableOpacity
-        style={{marginHorizontal:10}}
-        {...props}
-    >
-        <Text style={{fontSize:16}}>Done</Text>
-    </TouchableOpacity>
-);
-
-const OnboardingScreen = ({navigation}) => {
-    return (
-        <Onboarding
-        SkipButtonComponent={Skip}
-        NextButtonComponent={Next}
-        DoneButtonComponent={Done}
-        DotComponent={Dots}
-        onSkip={() => navigation.replace("Login")}
-        onDone={() => navigation.navigate("Login")}
-        pages={[
-          {
-            backgroundColor: '#a6e4d0',
-            image: <Image source={require('../assets/onboarding-img1.png')} />,
-            title: 'Connect to the World',
-            subtitle: 'A New Way To Connect With The World',
-          },
-          {
-            backgroundColor: '#fdeb93',
-            image: <Image source={require('../assets/onboarding-img2.png')} />,
-            title: 'Share Your Favorites',
-            subtitle: 'Share Your Thoughts With Similar Kind of People',
-          },
-          {
-            backgroundColor: '#e9bcbe',
-            image: <Image source={require('../assets/onboarding-img3.png')} />,
-            title: 'Become The Star',
-            subtitle: "Let The Spot Light Capture You",
-          },
-        ]}
-      />
-    );
-};
-
-export default OnboardingScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    alignItems: 'center', 
-    justifyContent: 'center'
-  },
-});
+    container: {
+      flex: 1,
+        
+    },
+    image: {
+      flex: 1,
+      justifyContent: "flex-end",
+      
+    },
+
+    button:{
+      padding:18,
+      textAlign:"center",
+      backgroundColor:"#12a66d",
+      margin:16,
+      borderRadius:8,
+      elevation:2,
+    },  
+
+    f_line:{
+        color: "white",
+      fontSize:28,
+      padding:16,
+      textAlign: "left",
+
+      backgroundColor: "#8003",
+      fontFamily:"Lato-Bold"
+    },
+    text: {
+      color: "white",
+      fontSize:28,
+      
+      fontWeight: "bold",
+      textAlign: "center",
+      backgroundColor: "#000"
+    }
+  });
+  
+  
